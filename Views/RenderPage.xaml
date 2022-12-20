@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiTracer.Views.RenderPage"
+             xmlns:local="clr-namespace:MauiTracer"
+             xmlns:vm="clr-namespace:MauiTracer.ViewModels"
+             x:DataType="vm:MainPageViewModel"
+             Title="RenderPage">
+    <ScrollView>
+        <VerticalStackLayout
+                Spacing="25"
+                Padding="30,0"
+                VerticalOptions="Center">
+
+            <!-- Raytrace output image -->
+            <local:WriteableSurface 
+                    HeightRequest="512" 
+                    WidthRequest="1024" 
+                    x:Name="MainSurface"/>
+
+            <!-- Render settings -->
+            <Border Background="#353535" HorizontalOptions="Fill" Padding="16"
+                    WidthRequest="300">
+                <VerticalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <Button
+                            Text="Start"
+                            Clicked="OnStartClicked"
+                            HorizontalOptions="Center" 
+                            x:Name="RenderBtn"/>
+                        <Button
+                            Text="Clear"
+                            Clicked="Button_Clicked_1"
+                            HorizontalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Label HorizontalOptions="Center" Margin="0,8,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="SuperSampling: "/>
+                                <Span Text="{Binding SuperSampling, Mode=OneWay}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Slider Minimum="1" Maximum="4" Value="{Binding SuperSampling}"
+                                        HorizontalOptions="Center" WidthRequest="256" />
+
+                    <Label HorizontalOptions="Center" Margin="0,8,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Shadow rays: "/>
+                                <Span Text="{Binding ShadowRaycount, Mode=OneWay}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Slider Minimum="4" Maximum="64" Value="{Binding ShadowRaycount}"
+                                        HorizontalOptions="Center" WidthRequest="256" />
+
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="{Binding RenderDiffuse}" />
+                        <Label Text="Diffuse" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="{Binding RenderSpecular}" />
+                        <Label Text="Specular" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="{Binding RenderReflection}" />
+                        <Label Text="Reflection" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="{Binding RenderRefraction}" />
+                        <Label Text="Refraction" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

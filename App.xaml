@@ -1,0 +1,30 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiTracer"
+             xmlns:views="clr-namespace:MauiTracer.Views"
+             xmlns:conv="clr-namespace:MauiTracer.Converters"
+             x:Class="MauiTracer.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:ToListOfOneConverter x:Key="ToListOfOne" />
+
+            <DataTemplate x:Key="SolidColorPropertiesTemplate">
+                <views:SolidColorTextureView />
+            </DataTemplate>
+
+            <DataTemplate x:Key="CheckerboardPropertiesTemplate">
+                <views:CheckerboardView />
+            </DataTemplate>
+
+            <local:MaterialsDataTemplateSelector x:Key="MaterialsDataTemplateSelector"
+                                                 SolidColorTemplate="{StaticResource SolidColorPropertiesTemplate}"
+                                                 CheckerboardTemplate="{StaticResource CheckerboardPropertiesTemplate}"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

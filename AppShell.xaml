@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiTracer.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiTracer"
+    xmlns:view="clr-namespace:MauiTracer.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <Tab Title="Render">
+            <view:RenderPage x:Name="RenderPageView"/>
+        </Tab>
+
+        <Tab Title="Scene">
+            <view:ScenePage x:Name="ScenePageView"/>
+        </Tab>
+    </TabBar>
+</Shell>
